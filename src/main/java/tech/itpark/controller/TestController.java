@@ -2,7 +2,6 @@ package tech.itpark.controller;
 
 import org.springframework.stereotype.Controller;
 import tech.itpark.annotation.*;
-import tech.itpark.http.model.Request;
 import tech.itpark.model.ManyUser;
 import tech.itpark.model.User;
 
@@ -13,14 +12,14 @@ import java.util.List;
 @Controller
 public class TestController {
 
-    @GetMapping("/getString")
-    public List<User> getString(@RequestParam("request") Request request) {
+    @GetMapping("getString")
+    public List<User> getString() {
         return Arrays.asList(User.builder().name("Лол").value("kek").build(),
                 User.builder().name("биш").value("kek").build(),
                 User.builder().name("таш").value("кент").build());
     }
 
-    @GetMapping("/getString1")
+    @GetMapping("/getString5")
     public void getString1(@RequestParam("b") String b,
                            @RequestParam("a") String a) {
         System.out.println(b + a);

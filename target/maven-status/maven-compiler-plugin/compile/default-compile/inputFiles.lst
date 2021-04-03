@@ -1,15 +1,13 @@
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/annotation/GetMapping.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/model/ManyUser.java
-/Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/BeanMethod.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/controller/TestController.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/annotation/RequestParam.java
-/Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/config/RegisterBean.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/Main.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/annotation/RequestHeader.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/annotation/RequestBody.java
-/Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/util/PredicateUtil.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/adapter/Adapter.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/annotation/PostMapping.java
+/Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/model/BeanMethod.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/bpp/HandlerMappingBeanPostProcessor.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/model/User.java
 /Users/amir/work/projects/education_it_park/frontcontroller/src/main/java/tech/itpark/handler/RouteMapping.java

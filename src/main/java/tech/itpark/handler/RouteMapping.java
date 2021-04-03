@@ -1,7 +1,6 @@
 package tech.itpark.handler;
 
 import org.springframework.stereotype.Component;
-import tech.itpark.BeanMethod;
 import tech.itpark.adapter.Adapter;
 import tech.itpark.annotation.RequestBody;
 import tech.itpark.annotation.RequestHeader;
@@ -9,12 +8,16 @@ import tech.itpark.annotation.RequestParam;
 import tech.itpark.http.exception.client.NotFoundException;
 import tech.itpark.http.model.Request;
 import tech.itpark.http.model.Response;
+import tech.itpark.model.BeanMethod;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import static tech.itpark.http.HttpConstants.APPLICATION_JSON;
+import static tech.itpark.http.HttpConstants.CONTENT_TYPE;
 
 @Component
 public class RouteMapping {
@@ -27,7 +30,7 @@ public class RouteMapping {
     }
 
     public void callMethod(Request request, Response response) throws NotFoundException {
-        final var path = (request.getHttpMethod() + request.getPath()).replace("/", "");
+        final var path = request.getHttpMethod() + request.getPath().replaceFirst("/", "");
         final var beanMethod = routesMapping.get(path);
         if (beanMethod == null)
             throw new NotFoundException("Not found path:" + request.getPath());
@@ -39,6 +42,7 @@ public class RouteMapping {
         try {
             Object invoke = method.invoke(bean, args);
             final var transfer = adapter.transfer(invoke);
+            response.addHeader(CONTENT_TYPE, APPLICATION_JSON);
             response.setBody(transfer);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

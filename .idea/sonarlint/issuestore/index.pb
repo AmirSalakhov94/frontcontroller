@@ -19,3 +19,15 @@ S
 #src/main/java/tech/itpark/Main.java,d/8/d8832c5158ffc0f69fa10bb5b971a488cc15bc62
 c
 3src/main/java/tech/itpark/handler/RouteMapping.java,2/b/2b09057a419c6b87393159b609a0c96ee83e4aea
+f
+6src/main/java/tech/itpark/annotation/RequestParam.java,e/c/ecb451ed3293575193dd419a72b65c2523f24fbf
+e
+5src/main/java/tech/itpark/annotation/RequestBody.java,1/f/1fcc3b4b1fbe4abe3020362fc4d4ba1d5c993fe2
+g
+7src/main/java/tech/itpark/annotation/RequestHeader.java,8/f/8f3564f0846fbcbea2f94f509a84e8181f14939c
+a
+1src/main/java/tech/itpark/util/PredicateUtil.java,b/5/b5d3001a42c47bd3a9a9f7e30b78c6193827bc35
+]
+-src/main/java/tech/itpark/model/ManyUser.java,1/d/1dcb35311d0057d2bd797f4ad045e2a192167f8e
+^
+.src/main/java/tech/itpark/adapter/Adapter.java,2/2/22489965caac02ceecf80a4e0bf115e39a1c3155

@@ -1,4 +1,4 @@
-package tech.itpark;
+package tech.itpark.model;
 
 import lombok.Builder;
 import lombok.Data;

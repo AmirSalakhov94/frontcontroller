@@ -5,11 +5,11 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import tech.itpark.BeanMethod;
 import tech.itpark.annotation.GetMapping;
 import tech.itpark.annotation.PostMapping;
 import tech.itpark.handler.RouteMapping;
 import tech.itpark.http.enums.HttpMethod;
+import tech.itpark.model.BeanMethod;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -43,10 +43,10 @@ public class HandlerMappingBeanPostProcessor implements BeanPostProcessor {
     private String getPath(final Method method) {
         if (method.isAnnotationPresent(GetMapping.class)) {
             GetMapping getMapping = method.getAnnotation(GetMapping.class);
-            return (HttpMethod.GET + getMapping.value()).replace("/", "");
+            return HttpMethod.GET + getMapping.value().replaceFirst("/", "");
         } else if (method.isAnnotationPresent(PostMapping.class)) {
             PostMapping postMapping = method.getAnnotation(PostMapping.class);
-            return (HttpMethod.POST + postMapping.value()).replace("/", "");
+            return HttpMethod.POST + postMapping.value().replaceFirst("/", "");
         }
 
         return null;
