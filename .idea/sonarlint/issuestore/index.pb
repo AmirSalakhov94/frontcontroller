@@ -1,10 +1,6 @@
 
 e
 5src/main/java/tech/itpark/annotation/PostMapping.java,b/2/b2e726841057aa58b367052d3cc88f97fc498c4e
-Y
-)src/main/java/tech/itpark/BeanMethod.java,8/a/8ae9be45f7e9d25e8a1837edbf26fa2abdcf3694
-b
-2src/main/java/tech/itpark/config/RegisterBean.java,2/2/22e4b62f13b26cc4a22aaa5be7b1e23f2d7e4f94
 d
 4src/main/java/tech/itpark/annotation/GetMapping.java,1/f/1f461dcb73c69812b69179d240b609464c9aaff4
 7
@@ -25,9 +21,9 @@ e
 5src/main/java/tech/itpark/annotation/RequestBody.java,1/f/1fcc3b4b1fbe4abe3020362fc4d4ba1d5c993fe2
 g
 7src/main/java/tech/itpark/annotation/RequestHeader.java,8/f/8f3564f0846fbcbea2f94f509a84e8181f14939c
-a
-1src/main/java/tech/itpark/util/PredicateUtil.java,b/5/b5d3001a42c47bd3a9a9f7e30b78c6193827bc35
 ]
 -src/main/java/tech/itpark/model/ManyUser.java,1/d/1dcb35311d0057d2bd797f4ad045e2a192167f8e
 ^
 .src/main/java/tech/itpark/adapter/Adapter.java,2/2/22489965caac02ceecf80a4e0bf115e39a1c3155
+_
+/src/main/java/tech/itpark/model/BeanMethod.java,3/5/35f605ae52b5ae16e0b8a517ee6fb4d5cc4bb4d3

@@ -2,12 +2,9 @@ package tech.itpark;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import tech.itpark.handler.RouteMapping;
+import tech.itpark.http.connection.handler.ConnectionHandlerImpl;
 import tech.itpark.http.container.Container;
-import tech.itpark.http.container.listener.ContainerListener;
-import tech.itpark.http.container.listener.DefaultContainerListener;
 import tech.itpark.http.handler.HandlerHttpServer;
-
-import java.util.Collections;
 
 public class Main {
 
@@ -17,8 +14,7 @@ public class Main {
         RouteMapping routeMapping = context.getBean(RouteMapping.class);
         HandlerHttpServer handlerHttpServer = new HandlerHttpServer();
         handlerHttpServer.register("/", routeMapping::callMethod);
-        ContainerListener containerListener = new DefaultContainerListener(handlerHttpServer);
-        Container container = new Container(Collections.singletonList(containerListener));
+        Container container = new Container(new ConnectionHandlerImpl(handlerHttpServer));
         container.listen(9999);
     }
 }

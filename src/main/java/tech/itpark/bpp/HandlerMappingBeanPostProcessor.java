@@ -11,7 +11,6 @@ import tech.itpark.handler.RouteMapping;
 import tech.itpark.http.enums.HttpMethod;
 import tech.itpark.model.BeanMethod;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 
 @RequiredArgsConstructor
@@ -28,27 +27,27 @@ public class HandlerMappingBeanPostProcessor implements BeanPostProcessor {
 
         Arrays.stream(clazz.getMethods())
                 .forEach(method -> {
-                    String path = getPath(method);
-                    BeanMethod beanMethod = BeanMethod.builder()
-                            .bean(bean)
-                            .method(method)
-                            .build();
-
-                    routeMapping.registerRoute(path, beanMethod);
+                    if (method.isAnnotationPresent(GetMapping.class)) {
+                        GetMapping getMapping = method.getAnnotation(GetMapping.class);
+                        String path = getMapping.value().replaceFirst("/", "");
+                        BeanMethod beanMethod = BeanMethod.builder()
+                                .bean(bean)
+                                .method(method)
+                                .httpMethod(HttpMethod.GET)
+                                .build();
+                        routeMapping.registerRoute(path, beanMethod);
+                    } else if (method.isAnnotationPresent(PostMapping.class)) {
+                        PostMapping postMapping = method.getAnnotation(PostMapping.class);
+                        String path = postMapping.value().replaceFirst("/", "");
+                        BeanMethod beanMethod = BeanMethod.builder()
+                                .bean(bean)
+                                .method(method)
+                                .httpMethod(HttpMethod.POST)
+                                .build();
+                        routeMapping.registerRoute(path, beanMethod);
+                    }
                 });
 
         return bean;
-    }
-
-    private String getPath(final Method method) {
-        if (method.isAnnotationPresent(GetMapping.class)) {
-            GetMapping getMapping = method.getAnnotation(GetMapping.class);
-            return HttpMethod.GET + getMapping.value().replaceFirst("/", "");
-        } else if (method.isAnnotationPresent(PostMapping.class)) {
-            PostMapping postMapping = method.getAnnotation(PostMapping.class);
-            return HttpMethod.POST + postMapping.value().replaceFirst("/", "");
-        }
-
-        return null;
     }
 }

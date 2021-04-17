@@ -5,6 +5,7 @@ import tech.itpark.adapter.Adapter;
 import tech.itpark.annotation.RequestBody;
 import tech.itpark.annotation.RequestHeader;
 import tech.itpark.annotation.RequestParam;
+import tech.itpark.http.exception.client.MethodNotAllowedException;
 import tech.itpark.http.exception.client.NotFoundException;
 import tech.itpark.http.model.Request;
 import tech.itpark.http.model.Response;
@@ -30,10 +31,13 @@ public class RouteMapping {
     }
 
     public void callMethod(Request request, Response response) throws NotFoundException {
-        final var path = request.getHttpMethod() + request.getPath().replaceFirst("/", "");
+        final var path = request.getPath().replaceFirst("/", "");
         final var beanMethod = routesMapping.get(path);
         if (beanMethod == null)
             throw new NotFoundException("Not found path:" + request.getPath());
+
+        if (beanMethod.getHttpMethod() != request.getHttpMethod())
+            throw new MethodNotAllowedException("Method not allowed");
 
         final var bean = beanMethod.getBean();
         final var method = beanMethod.getMethod();
