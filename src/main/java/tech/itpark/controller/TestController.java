@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class TestController {
 
-    @GetMapping("getString")
+    @GetMapping("/getString")
     public List<User> getString() {
         return Arrays.asList(User.builder().name("Лол").value("kek").build(),
                 User.builder().name("биш").value("kek").build(),
@@ -31,7 +31,7 @@ public class TestController {
         System.out.println(b + a);
     }
 
-    @PostMapping("/getString")
+    @PostMapping("/postString")
     public List<String> postString(@RequestBody("manyUser") ManyUser manyUser,
                                    @RequestHeader("Authorization") String auth) {
         return Collections.singletonList("user");

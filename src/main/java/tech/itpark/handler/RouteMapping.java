@@ -5,6 +5,7 @@ import tech.itpark.adapter.Adapter;
 import tech.itpark.annotation.RequestBody;
 import tech.itpark.annotation.RequestHeader;
 import tech.itpark.annotation.RequestParam;
+import tech.itpark.http.enums.HttpMethod;
 import tech.itpark.http.exception.client.MethodNotAllowedException;
 import tech.itpark.http.exception.client.NotFoundException;
 import tech.itpark.http.model.Request;
@@ -23,20 +24,21 @@ import static tech.itpark.http.HttpConstants.CONTENT_TYPE;
 @Component
 public class RouteMapping {
 
-    private final Map<String, BeanMethod> routesMapping = new HashMap<>();
+    private final Map<String, Map<HttpMethod, BeanMethod>> routesMapping = new HashMap<>();
     private final Adapter adapter = new Adapter();
 
-    public void registerRoute(String route, BeanMethod beanMethod) {
+    public void registerRoute(String route, Map<HttpMethod, BeanMethod> beanMethod) {
         routesMapping.put(route, beanMethod);
     }
 
     public void callMethod(Request request, Response response) throws NotFoundException {
-        final var path = request.getPath().replaceFirst("/", "");
-        final var beanMethod = routesMapping.get(path);
-        if (beanMethod == null)
-            throw new NotFoundException("Not found path:" + request.getPath());
+        final var path = request.getPath();
+        final var mapBeanMethods = routesMapping.get(path);
+        if (mapBeanMethods == null)
+            throw new NotFoundException("Not found path:" + path);
 
-        if (beanMethod.getHttpMethod() != request.getHttpMethod())
+        BeanMethod beanMethod = mapBeanMethods.get(request.getHttpMethod());
+        if (beanMethod == null)
             throw new MethodNotAllowedException("Method not allowed");
 
         final var bean = beanMethod.getBean();
